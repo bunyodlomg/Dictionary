@@ -3,11 +3,25 @@ const f2 = document.querySelector('.f2')
 const f3 = document.querySelector('.f3')
 const text = document.querySelector('.dropdown__text')
 
+let font = localStorage.getItem('font')
+if (font) {
+    document.body.style.fontFamily = font
+    switch (font) {
+        case 'serif':
+            text.textContent = 'Serif'
+            break;
+        case 'sans-serif':
+            text.textContent = 'Sans-Serif'
+            break;
+        case 'monospace':
+            text.textContent = 'Mono'
+            break;
+    }
+}
 f1.addEventListener('click', () => {
     document.body.style.fontFamily = 'sans-serif'
-    text.textContent = 'Sans-Serif'
     localStorage.setItem('font', 'sans-serif')
-
+    text.textContent = 'Sans-Serif'
 })
 f2.addEventListener('click', () => {
     document.body.style.fontFamily = 'serif'
@@ -16,11 +30,10 @@ f2.addEventListener('click', () => {
 })
 f3.addEventListener('click', () => {
     document.body.style.fontFamily = 'monospace'
-    text.textContent = 'Mono'
     localStorage.setItem('font', 'monospace')
+    text.textContent = 'Mono'
 })
-let font = localStorage.getItem('font')
-document.body.style.fontFamily = font
+
 f1.style.fontFamily = 'sans-serif'
 f2.style.fontFamily = 'serif'
 f3.style.fontFamily = 'monospace'
