@@ -7,7 +7,7 @@ document.body.style.fontFamily = font
 f1.addEventListener('click', () => {
     document.body.style.fontFamily = 'sans-serif'
     text.textContent = 'Sans-Serif'
-    localStorage.setItem('font', 'Sans-Serif')
+    localStorage.setItem('font', 'sans-serif')
 
 })
 f2.addEventListener('click', () => {
