@@ -163,6 +163,11 @@ body {
     font-family: "Inter", sans-serif;
     font-weight: 400;
     background-color: var(--light4);
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 a {
@@ -397,16 +402,17 @@ input:focus {
 
 .noun__top--text {
     font-weight: 700;
-    font-size: 2, 4rem;
+    font-size: 2.4rem;
     font-style: italic;
     line-height: 29px;
     color: var(--dark3);
+    margin-right: 26px;
 }
 
 .noun__top--hr {
     height: 1px;
     border: 1px solid var(--light2);
-    width: 656px;
+    width: 100%;
 }
 
 .meaning__title {
@@ -456,13 +462,24 @@ input:focus {
 }
 
 .synonyms--link {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.link {
     font-weight: 700;
     font-size: 2rem;
     line-height: 24px;
     color: var(--color1);
+    cursor: pointer;
 }
-
-.synonyms--link:active {
+.link:hover{
+    opacity: .5;
+}
+.link:active {
     text-decoration: underline;
 }
 
@@ -573,4 +590,15 @@ input:focus {
 .playBtn2 circle {
     fill: var(--color1);
     opacity: 1;
+}
+
+/* loader */
+.loader {
+    margin-right: auto;
+    margin-left: auto;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    right: 50%;
+    z-index: 5;
 }

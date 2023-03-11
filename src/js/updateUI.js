@@ -1,7 +1,7 @@
+import { myFunc } from "./form";
 function updateUI(data) {
     const container = document.querySelector('.wrapper')
     const { word, phonetics, meanings, sourceUrls } = data
-    console.log(word);
     container.innerHTML = `
         <div class="main">
             <div class="main__text">
@@ -29,7 +29,7 @@ function updateUI(data) {
                 </div>
                 <div class="meaning__synonyms">
                     <p class="synonyms--title">Synonyms</p>
-                    <a class="synonyms--link" href=""></a>
+                    <div class="synonyms--link"></div>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@ function updateUI(data) {
         <hr class="hr__footer">
         <div class="source">
             <p class="source__title">Source</p>
-            <a class="source__link" target="_blank"
+            <a class="source__link"
                 href="https://en.wiktionary.org/wiki/keyboard">https://en.wiktionary.org/wiki/keyboard
             </a>
             <img src="./images/url.svg" alt="url image" class="source__img">
@@ -71,15 +71,28 @@ function updateUI(data) {
     meanings[0].synonyms.forEach((e) => {
         if (e.length !== '') {
             n++
-            synonymsLink.innerHTML += `${e} `
+            const link = document.createElement('p')
+            link.className = 'link'
+            link.innerHTML = `${e} `
             console.log(e);
+            synonymsLink.appendChild(link)
         }
     });
     if (!n) {
-        synonymsLink.innerHTML = s
-
+        const link = document.createElement('p')
+        link.className = 'link'
+        link.innerHTML = s
+        synonymsLink.appendChild(link)
     }
 
+    // 
+    synonymsLink.addEventListener('click', (e) => {
+        let syn = e.target.textContent;
+        if (syn !== 'No synonyms') {
+            myFunc(syn)
+        }
+    })
+    // 
     meanings[1].definitions.forEach(e => {
         const div = document.createElement('div');
         div.innerHTML = `
@@ -95,7 +108,6 @@ function updateUI(data) {
 
     const playBtn = document.querySelector('.playBtn')
     playBtn.addEventListener('click', () => {
-        console.log(phonetics);
         let a = ''
         phonetics.forEach((e) => {
             if (e.audio !== '') {
@@ -105,10 +117,12 @@ function updateUI(data) {
         let audio = new Audio(a)
         playBtn.classList.add('playBtn1')
         playBtn.classList.add('playBtn2')
+        audio.load()
         audio.play()
 
         audio.addEventListener('timeupdate', (e) => {
             let time = e.timeStamp / 100
+            console.log();
             setTimeout(() => {
                 playBtn.classList.remove('playBtn1')
                 playBtn.classList.remove('playBtn2')
