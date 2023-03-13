@@ -476,9 +476,11 @@ input:focus {
     color: var(--color1);
     cursor: pointer;
 }
-.link:hover{
+
+.link:hover {
     opacity: .5;
 }
+
 .link:active {
     text-decoration: underline;
 }
@@ -575,11 +577,24 @@ input:focus {
     display: block;
 }
 
+/* loader */
+.loader {
+    margin-right: auto;
+    margin-left: auto;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    z-index: 5;
+}
 
 /* media */
 @media (max-width:420px) {
     .main__title {
         font-size: 3.2rem;
+    }
+
+    .loader {
+        left: 40%;
     }
 }
 
@@ -590,15 +605,4 @@ input:focus {
 .playBtn2 circle {
     fill: var(--color1);
     opacity: 1;
-}
-
-/* loader */
-.loader {
-    margin-right: auto;
-    margin-left: auto;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    right: 50%;
-    z-index: 5;
 }
